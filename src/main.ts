@@ -7,6 +7,8 @@ if (started) {
   app.quit();
 }
 
+const { ipcMain, dialog } = require('electron');
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -25,6 +27,11 @@ const createWindow = () => {
   } else {
     mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
   }
+
+  // Open the DevTools.
+  ipcMain.handle('hey-open-my-dialog-now', () => {
+    return dialog.showOpenDialog({properties: ['openFile', 'multiSelections']})
+  });
 };
 
 // This method will be called when Electron has finished

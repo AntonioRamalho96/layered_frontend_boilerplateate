@@ -4,7 +4,12 @@ function RenderApp()
 {
     const action_fn = () =>
     {
-        // TODO
+        const p = window.MY_APP_NAMESPACE.openDialog();
+        p.then(
+            (value) => console.log(value),
+            (error) => console.log(error)
+            
+        )
     }
 
     return (
